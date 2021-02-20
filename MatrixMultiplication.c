@@ -5,6 +5,7 @@
 
 void MatrixMultiplicationSimple(int M, int N, int K, const float * A, const float * B, float * C)
 {
+    #pragma omp parallel for
     for (int i = 0; i < M; ++i)
     {
         for (int j = 0; j < N; ++j)
@@ -19,8 +20,10 @@ void MatrixMultiplicationSimple(int M, int N, int K, const float * A, const floa
 
 void MatrixMultiplicationOptimized(int M, int N, int K, const float * A, const float * B, float * C)
 {
+    #pragma omp parallel for
     for (int i = 0; i < M; ++i)
     {
+        //printf("%d", omp_get_thread_num());
         float * c = C + i * N;
         for (int j = 0; j < N; ++j)
             c[j] = 0;
@@ -37,7 +40,7 @@ void MatrixMultiplicationOptimized(int M, int N, int K, const float * A, const f
 int main(int argc, char const *argv[])
 {
     float *A, *B, *C;
-    int m, n, k;
+    int m, n, k, threads;
 
     /* Ввод размерностей матриц: A(MxK), B(KxN), C(MxN)*/
     printf("M=");
@@ -48,6 +51,11 @@ int main(int argc, char const *argv[])
     scanf("%d", &k);
     
     long int operations=2*(long int)m*n*k;
+
+    /* Ввод количества потоков*/
+    printf("Threads=");
+    scanf("%d", &threads);
+    omp_set_num_threads(threads);
 
     /* Выделение памяти под матрицы*/
     A=(float*)malloc(m * k * sizeof(float));
