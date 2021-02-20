@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <malloc.h>
+#include <omp.h>
 
 void MatrixMultiplicationSimple(int M, int N, int K, const float * A, const float * B, float * C)
 {
@@ -38,6 +39,7 @@ int main(int argc, char const *argv[])
     float *A, *B, *C;
     int m, n, k;
 
+    /* Ввод размерностей матриц: A(MxK), B(KxN), C(MxN)*/
     printf("M=");
     scanf("%d", &m);
     printf("N=");
@@ -47,10 +49,12 @@ int main(int argc, char const *argv[])
     
     long int operations=2*(long int)m*n*k;
 
+    /* Выделение памяти под матрицы*/
     A=(float*)malloc(m * k * sizeof(float));
     B=(float*)malloc(k * n * sizeof(float));
     C=(float*)malloc(m * n * sizeof(float));
 
+    /* Заполнение матриц*/
     int i;
     for (i= 0; i<m*k; i++)
     {
@@ -67,31 +71,30 @@ int main(int argc, char const *argv[])
     
     clock_t clocks,start,stop;
     double time, flops;
-
-    start = clock();
     
+    /* Замер времени для простой реализации перемножения матриц A и B*/
+    start = clock();
     MatrixMultiplicationSimple(m,n,k,A,B,C);
-
     stop = clock();
     clocks=stop-start;
     
-    time=(double)clocks/CLOCKS_PER_SEC;
-    flops = operations/time;
+    time=(double)clocks/CLOCKS_PER_SEC; // время в секундах
+    flops = operations/time; // производительность в FLOPS
 
-    printf("1. time=%lf s, flops=%lf GFLOPS\n",time, flops/1000000000);
+    printf("Simple. time=%lf s, flops=%lf GFLOPS\n",time, flops/1000000000);
 
+    /* Замер времени для оптимизированной реализации перемножения матриц*/
     start = clock();
-    
     MatrixMultiplicationOptimized(m,n,k,A,B,C);
-
     stop = clock();
     clocks=stop-start;
     
     time=(double)clocks/CLOCKS_PER_SEC;
     flops = operations/time;
 
-    printf("2. time=%lf s, flops=%lf GFLOPS\n",time, flops/1000000000);
+    printf("Optimized. time=%lf s, flops=%lf GFLOPS\n",time, flops/1000000000);
 
+    /* Освобождение памяти*/
     free(A);
     free(B);
     free(C);
