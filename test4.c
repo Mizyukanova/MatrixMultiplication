@@ -27,6 +27,8 @@ int main(int argc, char const *argv[])
     float C[8]={31, 34, 71, 78, 111, 122, 151, 166};
     float *C1, *C2;
     
+    printf("-------------------TEST 4-------------------\n");
+
     /* Размерности матриц: A(MxK), B(KxN), C(MxN) и количество потоков*/
     printf("M=%d\n", m);
     printf("N=%d\n", n);
