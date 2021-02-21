@@ -48,7 +48,7 @@ int main(int argc, char const *argv[])
     {
         for (j= 0; j<k; j++)
         {
-            printf("%f\t", A[i*m+j]);
+            printf("%f\t", A[i*k+j]);
         }
         printf("\n");  
     }
@@ -57,7 +57,7 @@ int main(int argc, char const *argv[])
     {
         for (j= 0; j<n; j++)
         {
-            printf("%f\t", B[i*k+j]);
+            printf("%f\t", B[i*n+j]);
         }
         printf("\n");  
     }
@@ -66,7 +66,7 @@ int main(int argc, char const *argv[])
     {
         for (j= 0; j<n; j++)
         {
-            printf("%f\t", C[i*m+j]);
+            printf("%f\t", C[i*n+j]);
         }
         printf("\n");  
     }
@@ -77,7 +77,7 @@ int main(int argc, char const *argv[])
     {
         for (j= 0; j<n; j++)
         {
-            printf("%f\t", C1[i*m+j]);
+            printf("%f\t", C1[i*n+j]);
         }
         printf("\n");  
     }
@@ -95,7 +95,7 @@ int main(int argc, char const *argv[])
     {
         for (j= 0; j<n; j++)
         {
-            printf("%f\t", C2[i*m+j]);
+            printf("%f\t", C2[i*n+j]);
         }
         printf("\n");  
     }

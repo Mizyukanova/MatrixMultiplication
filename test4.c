@@ -21,10 +21,10 @@ int ComparisonResults(const float * C, const float * C1, const long int size)
 
 int main(int argc, char const *argv[])
 {
-    const int m=1, n=3, k=2, threads=2;
-    float A[2]={1, 2};
-    float B[6]={3, 4, 5, 6, 7, 8};
-    float C[3]={15, 18, 21};
+    const int m=4, n=2, k=2, threads=2;
+    float A[8]={1, 2, 3, 4, 5, 6, 7, 8};
+    float B[4]={9, 10, 11, 12};
+    float C[8]={31, 34, 71, 78, 111, 122, 151, 166};
     float *C1, *C2;
     
     /* Размерности матриц: A(MxK), B(KxN), C(MxN) и количество потоков*/
@@ -44,14 +44,15 @@ int main(int argc, char const *argv[])
     /* Вывод матриц*/
     int i,j;
     printf("A\n");
-    for (i= 0; i<m; i++)
+    for (i=0; i<m; i++)
     {
-        for (j= 0; j<k; j++)
+        for (j=0; j<k; j++)
         {
             printf("%f\t", A[i*k+j]);
         }
         printf("\n");  
     }
+
     printf("B\n");
     for (i= 0; i<k; i++)
     {
