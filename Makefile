@@ -15,6 +15,10 @@ test3: test3.o MatrixMultiplication.o
 test4: test4.o MatrixMultiplication.o
 	gcc MatrixMultiplication.o test4.o -w -o test4 -fopenmp
 
+test: test1 
+	#test2 test3 test4
+	./test1
+	#./test2 ./test3 ./test4
 
 main.o: main.c
 	gcc -c main.c -fPIC -O3 -march=native -w -fopenmp

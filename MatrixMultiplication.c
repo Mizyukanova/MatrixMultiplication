@@ -1,5 +1,3 @@
-
-
 void MatrixMultiplicationSimple(int threads, int M, int N, int K, const float * A, const float * B, float * C)
 {
     omp_set_num_threads(threads);

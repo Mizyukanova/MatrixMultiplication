@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
     B=(float*)malloc(k * n * sizeof(float));
     C=(float*)malloc(m * n * sizeof(float));
 
-    /* Заполнение матриц*/
+    /* Заполнение матриц A и B*/
     int i;
     for (i= 0; i<m*k; i++)
     {
@@ -32,10 +32,6 @@ int main(int argc, char const *argv[])
     for (i = 0; i<k*n; i++)
     {
         B[i]=i;
-    }
-    for (i = 0; i<m*k; i++)
-    {
-        C[i]=i;
     }
     
     /* Ввод количества потоков*/
