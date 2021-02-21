@@ -21,19 +21,19 @@ int ComparisonResults(const float * C, const float * C1, const long int size)
 
 int main(int argc, char const *argv[])
 {
-    const int m=1, n=1, k=1, threads=2;
-
-    /* Заполнение матриц*/
-    float A[1]={1};
-    float B[1]={5};
-    float C[1]={5};
+    const int m=1, n=3, k=2, threads=2;
+    float A[2]={1, 2};
+    float B[6]={3, 4, 5, 6, 7, 8};
+    float C[3]={15, 18, 21};
     float *C1, *C2;
     
     /* Размерности матриц: A(MxK), B(KxN), C(MxN) и количество потоков*/
-    printf("M=N=K=%d\n",m);
+    printf("M=%d\n", m);
+    printf("N=%d\n", n);
+    printf("K=%d\n", k);
     printf("Threads=%d\n", threads);
     
-    /* Выделение памяти под результирующие матрицы*/
+    /* Выделение памяти под матрицы*/
     C1=(float*)malloc(m * n * sizeof(float));
     C2=(float*)malloc(m * n * sizeof(float));
     
